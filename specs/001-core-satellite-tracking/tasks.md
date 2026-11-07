@@ -70,12 +70,12 @@ description: "Task list for Core Satellite Tracking & Globe Experience implement
 
 **Independent Test**: Click top-left menu button; panel slides in within 200ms. Search for "INSAT" filters list instantly; toggle "Weather" or "Active"; verify active satellites show filled amber squares and altitudes in km.
 
-- [ ] T017 [P] [US2] Implement search bar with square hairline borders and Phase 2 "Describe what to track" teaser link in `src/components/Panel/SearchBar.tsx`
-- [ ] T018 [P] [US2] Implement compound filter button group (Row 1 single-select: `All`, `Weather`, `Navigation`; Row 2 independent toggles: `Active`, `Country`) with amber active borders in `src/components/Panel/FilterGroup.tsx`
-- [ ] T019 [P] [US2] Implement satellite list item row displaying dynamic operational status square (filled amber for active, hollow for inactive/idle), name in bold off-white, altitude in `IBM Plex Mono` (or `— km`), and bookmark star in `src/components/Panel/SatelliteRow.tsx`
-- [ ] T020 [US2] Implement scrollable satellite catalog list container grouping by "Saved" and "All satellites" with hairline dividers in `src/components/Panel/SatelliteList.tsx`
-- [ ] T021 [US2] Assemble slide-in control panel drawer with fast slide transition (`200ms cubic-bezier(0.16, 1, 0.3, 1)`), close 'X' button, and integration into `src/components/Panel/ControlPanel.tsx`
-- [ ] T022 [US2] Wire control panel drawer opening/closing and filter synchronization into `src/App.tsx`
+- [x] T017 [P] [US2] Implement search bar with square hairline borders and Phase 2 "Describe what to track" teaser link in `src/components/Panel/SearchBar.tsx`
+- [x] T018 [P] [US2] Implement compound filter button group (Row 1 single-select: `All`, `Weather`, `Navigation`; Row 2 independent toggles: `Active`, `Country`) with amber active borders in `src/components/Panel/FilterGroup.tsx`
+- [x] T019 [P] [US2] Implement satellite list item row displaying dynamic operational status square (filled amber for active, hollow for inactive/idle), name in bold off-white, altitude in `IBM Plex Mono` (or `— km`), and bookmark star in `src/components/Panel/SatelliteRow.tsx`
+- [x] T020 [US2] Implement scrollable satellite catalog list container grouping by "Saved" and "All satellites" with hairline dividers in `src/components/Panel/SatelliteList.tsx`
+- [x] T021 [US2] Assemble slide-in control panel drawer with fast slide transition (`200ms cubic-bezier(0.16, 1, 0.3, 1)`), close 'X' button, and integration into `src/components/Panel/ControlPanel.tsx`
+- [x] T022 [US2] Wire control panel drawer opening/closing and filter synchronization into `src/App.tsx`
 
 **Checkpoint**: User Story 2 is functional; users can search, filter, and inspect the catalog without affecting globe performance.
 

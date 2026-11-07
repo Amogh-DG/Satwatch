@@ -17,7 +17,7 @@ export const FilterGroup: React.FC<FilterGroupProps> = ({ filters, onChange }) =
   };
 
   return (
-    <div className="flex flex-col space-y-2 select-none">
+    <div className="flex flex-col space-y-2 select-none w-full">
       {/* Row 1: Primary Categories */}
       <div className="flex space-x-2">
         {categories.map((cat) => {
@@ -27,7 +27,7 @@ export const FilterGroup: React.FC<FilterGroupProps> = ({ filters, onChange }) =
               key={cat}
               type="button"
               onClick={() => onChange({ category: cat })}
-              className={`px-3 py-1 text-xs font-sans tracking-wide border transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 text-xs font-mono tracking-tight border transition-colors cursor-pointer ${
                 isSelected
                   ? 'border-amber text-amber bg-panel'
                   : 'border-hairline text-offwhite hover:border-muted bg-panel'
@@ -40,12 +40,12 @@ export const FilterGroup: React.FC<FilterGroupProps> = ({ filters, onChange }) =
         })}
       </div>
 
-      {/* Row 2: Secondary Criteria */}
+      {/* Row 2: Secondary Facets */}
       <div className="flex space-x-2">
         <button
           type="button"
           onClick={() => onChange({ activeOnly: !filters.activeOnly })}
-          className={`px-3 py-1 text-xs font-sans tracking-wide border transition-colors cursor-pointer ${
+          className={`px-3 py-1.5 text-xs font-mono tracking-tight border transition-colors cursor-pointer ${
             filters.activeOnly
               ? 'border-amber text-amber bg-panel'
               : 'border-hairline text-offwhite hover:border-muted bg-panel'
@@ -58,13 +58,13 @@ export const FilterGroup: React.FC<FilterGroupProps> = ({ filters, onChange }) =
         <button
           type="button"
           onClick={cycleCountry}
-          className={`px-3 py-1 text-xs font-sans tracking-wide border transition-colors cursor-pointer ${
+          className={`px-3 py-1.5 text-xs font-mono tracking-tight border transition-colors cursor-pointer ${
             filters.country !== 'All'
               ? 'border-amber text-amber bg-panel'
               : 'border-hairline text-offwhite hover:border-muted bg-panel'
           }`}
           style={{ borderRadius: 0 }}
-          title="Click to cycle countries"
+          title="Click to cycle countries (All -> India -> Russia -> International)"
         >
           {filters.country === 'All' ? 'Country' : filters.country}
         </button>
@@ -72,4 +72,3 @@ export const FilterGroup: React.FC<FilterGroupProps> = ({ filters, onChange }) =
     </div>
   );
 };
-
