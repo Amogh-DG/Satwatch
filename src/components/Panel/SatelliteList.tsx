@@ -61,7 +61,7 @@ export const SatelliteList: React.FC<SatelliteListProps> = ({
       {/* Saved Section */}
       {savedSatellites.length > 0 && (
         <div className="space-y-1">
-          <div className="text-xs font-sans text-muted tracking-wider uppercase px-2 py-1">
+          <div className="text-xs font-sans text-muted tracking-wide px-2 py-1">
             Saved
           </div>
           <div className="space-y-0.5">
@@ -87,7 +87,7 @@ export const SatelliteList: React.FC<SatelliteListProps> = ({
 
       {/* All Satellites Section */}
       <div className="space-y-1">
-        <div className="text-xs font-sans text-muted tracking-wider uppercase px-2 py-1">
+        <div className="text-xs font-sans text-muted tracking-wide px-2 py-1">
           All satellites
         </div>
         {otherSatellites.length > 0 ? (

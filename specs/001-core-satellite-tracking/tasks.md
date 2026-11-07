@@ -103,9 +103,9 @@ description: "Task list for Core Satellite Tracking & Globe Experience implement
 
 **Independent Test**: Star `INSAT-3D`; confirm it appears under "Saved" in the panel and its HUD button shows "Saved" with amber border. Refresh browser; verify `INSAT-3D` remains bookmarked. Click star again; verify bookmark is unpinned.
 
-- [ ] T028 [US4] Implement bookmark toggle handler connecting `SatelliteRow` star button and `TelemetryCard` "Saved" button to tracker store in `src/store/useTrackerStore.ts`
-- [ ] T029 [US4] Connect store bookmark updates to persistent `localStorage` serialization and hydration in `src/services/storage.ts`
-- [ ] T030 [US4] Update `SatelliteList.tsx` to render the "Saved" group pinned above "All satellites" matching `design/Panel-open.png`
+- [x] T028 [US4] Implement bookmark toggle handler connecting `SatelliteRow` star button and `TelemetryCard` "Saved" button to tracker store in `src/store/useTrackerStore.ts`
+- [x] T029 [US4] Connect store bookmark updates to persistent `localStorage` serialization and hydration in `src/services/storage.ts`
+- [x] T030 [US4] Update `SatelliteList.tsx` to render the "Saved" group pinned above "All satellites" matching `design/Panel-open.png`
 
 **Checkpoint**: User Story 4 is complete; bookmarks persist across reload cycles.
 
