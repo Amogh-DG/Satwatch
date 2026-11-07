@@ -1,0 +1,122 @@
+[
+  {
+    "id": "iss",
+    "name": "ISS",
+    "noradId": "25544",
+    "intlDesignator": "1998-067A",
+    "country": "International",
+    "category": "Space Station",
+    "launchYear": 1998,
+    "tleLine1": "1 25544U 98067A   26310.88530624  .00012224  00000+0  22778-3 0  9997",
+    "tleLine2": "2 25544  51.6322 313.9479 0007239 356.4073   3.6863 15.49223765593878",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "insat-3d",
+    "name": "INSAT-3D",
+    "noradId": "39216",
+    "intlDesignator": "2013-038B",
+    "country": "India",
+    "category": "Weather",
+    "launchYear": 2013,
+    "tleLine1": "1 39216U 13038B   26310.75322656 -.00000335  00000+0  00000+0 0  9994",
+    "tleLine2": "2 39216   2.2893  80.6010 0001730 152.4133 213.6566  1.00273430 48519",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "cartosat-2a",
+    "name": "Cartosat-2A",
+    "noradId": "32783",
+    "intlDesignator": "2008-021A",
+    "country": "India",
+    "category": "Earth Observation",
+    "launchYear": 2008,
+    "tleLine1": "1 32783U 08021A   26310.97045343  .00000559  00000+0  81609-4 0  9997",
+    "tleLine2": "2 32783  97.7469 354.6788 0012193  14.4973 345.6586 14.79374426999913",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "gsat-30",
+    "name": "GSAT-30",
+    "noradId": "45026",
+    "intlDesignator": "2020-005A",
+    "country": "India",
+    "category": "Communication",
+    "launchYear": 2020,
+    "tleLine1": "1 45026U 20005A   26308.62452610  .00000000  00000+0  00000+0 0  9997",
+    "tleLine2": "2 45026   0.0236  98.9272 0001796 103.0663 149.6917  1.00268600 24915",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "risat-2b",
+    "name": "RISAT-2B",
+    "noradId": "44233",
+    "intlDesignator": "2019-028A",
+    "country": "India",
+    "category": "Radar Imaging",
+    "launchYear": 2019,
+    "tleLine1": "1 44233U 19028A   26310.95868521  .00002854  00000+0  22469-3 0  9996",
+    "tleLine2": "2 44233  36.9970 227.9330 0005895 101.7068 258.4336 15.01133120409290",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "resourcesat-2",
+    "name": "RESOURCESAT-2",
+    "noradId": "37387",
+    "intlDesignator": "2011-015A",
+    "country": "India",
+    "category": "Earth Observation",
+    "launchYear": 2011,
+    "tleLine1": "1 37387U 11015A   26310.75446046  .00000053  00000+0  44272-4 0  9994",
+    "tleLine2": "2 37387  98.7493  17.0929 0011018 201.1031 158.9693 14.21612986806439",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "glonass-m",
+    "name": "GLONASS-M",
+    "noradId": "40001",
+    "intlDesignator": "2014-032A",
+    "country": "Russia",
+    "category": "Navigation",
+    "launchYear": 2014,
+    "tleLine1": "1 40001U 14032A   26310.22348008 -.00000037  00000+0  00000+0 0  9993",
+    "tleLine2": "2 40001  65.1445 308.8327 0009078 212.8966 147.0667  2.13101292 96480",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "meridian",
+    "name": "Meridian",
+    "noradId": "40296",
+    "intlDesignator": "2014-069A",
+    "country": "Russia",
+    "category": "Communication",
+    "launchYear": 2014,
+    "tleLine1": "1 40296U 14069A   26309.75719049  .00000223  00000+0  00000+0 0  9998",
+    "tleLine2": "2 40296  63.4477 201.6277 6601107 269.5647  20.5430  2.00604518 88072",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "elektro-l",
+    "name": "Elektro-L",
+    "noradId": "41105",
+    "intlDesignator": "2015-074A",
+    "country": "Russia",
+    "category": "Weather",
+    "launchYear": 2015,
+    "tleLine1": "1 41105U 15074A   26310.67202542 -.00000113  00000+0  00000+0 0  9992",
+    "tleLine2": "2 41105   7.0481  68.7273 0003020 211.1252 353.4155  1.00272544 39930",
+    "opsStatusCode": "+"
+  },
+  {
+    "id": "resurs-p-4",
+    "name": "Resurs-P 4",
+    "noradId": "59371",
+    "intlDesignator": "2024-061A",
+    "country": "Russia",
+    "category": "Earth Observation",
+    "launchYear": 2024,
+    "tleLine1": "1 59371U 24061A   26310.94210285  .00002848  00000+0  95328-4 0  9993",
+    "tleLine2": "2 59371  97.2924 256.5237 0002640  58.9373 301.2128 15.31774105145626",
+    "opsStatusCode": "+"
+  }
+]

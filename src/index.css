@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-charcoal: #15171A;
+  --bg-panel: #181B1D;
+  --accent-amber: #E8A33D;
+  --text-offwhite: #E8E4D8;
+  --text-muted: #8E918B;
+  --border-hairline: #3A3E40;
+}
+
+* {
+  border-radius: 0px !important;
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-charcoal);
+  color: var(--text-offwhite);
+  overflow: hidden;
+  font-family: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Custom scrollbar matching mission-control styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181B1D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3A3E40;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E8A33D;
+}
+
