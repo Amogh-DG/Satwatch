@@ -55,21 +55,22 @@ As a satellite tracker, I want to open an instrument-style slide-in control pane
 
 ---
 
-### User Story 3 - Satellite Selection, Telemetry HUD Card & Orbit Trail (Priority: P3)
+### User Story 3 - Satellite Selection, Telemetry HUD Card, Altitude Distance & Orbit Trail (Priority: P3)
 
-As a user tracking a specific spacecraft, I want to select a satellite either by clicking its point on the globe or from the control panel list, so that the view focuses on it, draws its projected orbit trail, and displays a dense mission-control telemetry card.
+As a user tracking a specific spacecraft, I want to select a satellite either by clicking its point on the globe or from the control panel list, so that the view focuses on it, frames it, draws its projected orbit trail, shows its relative distance to Earth (with altitude and Earth radii), and displays a dense mission-control telemetry card.
 
 **Why this priority**: Provides detailed orbital parameters and spatial context for individual satellites without cluttering the primary globe interface.
 
-**Independent Test**: Click any satellite point on the globe or click a satellite name in the control panel list. Verify an amber reticle surrounds the satellite, a smooth camera focus centers on and tracks the satellite, its trailing orbit path appears in amber, and the bottom-right instrument telemetry card appears with live metrics.
+**Independent Test**: Click any satellite point on the globe or click a satellite name in the control panel list. Verify an amber reticle surrounds the satellite, a smooth camera focus centers on the satellite while dynamically adjusting zoom so the whole Earth remains visible (tight view for LEO like ISS, wide view for MEO/GEO like GLONASS-M/INSAT-3D), an altitude line connects the satellite to the Earth surface below it labeled with altitude and Earth radii (e.g. "0.07 R⊕"), its trailing orbit path appears in amber, and the bottom-right instrument telemetry card appears with live metrics and the Earth radii metric. Clicking empty space deselects and returns to the normal globe view.
 
 **Acceptance Scenarios**:
 
-1. **Given** satellites visible on the globe or listed in the panel, **When** a user clicks on a satellite, **Then** an amber square reticle frames the satellite, an amber orbit trail renders tracing the trajectory it has traveled across the globe, and the camera smoothly refocuses to center on the satellite.
-2. **Given** a focused satellite, **When** the satellite moves in real time, **Then** the camera tracks with the satellite while permitting user click-and-drag to orbit around the target and scroll wheel to zoom.
-3. **Given** a selected satellite, **When** its telemetry details are displayed, **Then** a bottom-right instrument card appears with square borders, presenting Status (derived live), Altitude, Speed, Orbit type, Position (lat/long coordinates), Launched year, and International Designator.
-4. **Given** any metric in the telemetry card (such as Speed or Orbit classification) is unavailable from the data feed, **When** rendered, **Then** the value displays explicitly as "—".
-5. **Given** a satellite is currently selected, **When** the user clicks outside or deselects, **Then** the selection reticle, orbit trail, and telemetry card dismiss cleanly.
+1. **Given** satellites visible on the globe or listed in the panel, **When** a user clicks on a satellite, **Then** an amber square reticle frames the satellite, an amber orbit trail renders tracing the trajectory it has traveled across the globe, an altitude line connects the satellite to the surface point directly beneath it labeled with its altitude and distance in Earth radii (e.g. "0.07 R⊕"), and the camera smoothly refocuses to center on the satellite.
+2. **Given** a focused satellite, **When** the camera centers on it, **Then** the camera distance adjusts dynamically based on the satellite's altitude so that the whole Earth stays in the frame (tight framing for LEO such as ISS, wide framing for MEO/GEO such as GLONASS-M and INSAT-3D).
+3. **Given** a focused satellite, **When** the satellite moves in real time, **Then** the camera keeps the satellite centered while permitting user click-and-drag to orbit around the target and scroll wheel to zoom.
+4. **Given** a selected satellite, **When** its telemetry details are displayed, **Then** a bottom-right instrument card appears with square borders, presenting Status (derived live), Altitude, Earth Radii distance (e.g. "0.07 R⊕"), Speed, Orbit type, Position (lat/long coordinates), Launched year, and International Designator.
+5. **Given** any metric in the telemetry card (such as Speed or Orbit classification) is unavailable from the data feed, **When** rendered, **Then** the value displays explicitly as "—".
+6. **Given** a satellite is currently selected, **When** the user clicks outside or deselects via a close control, **Then** the selection reticle, orbit trail, altitude distance line/label, and telemetry card dismiss cleanly, and the camera smoothly transitions back to the normal default globe view.
 
 ---
 
@@ -113,9 +114,10 @@ As a frequent observer, I want to bookmark specific satellites so that I can qui
 - **FR-009**: System MUST provide compound categorical filtering within the control panel: Row 1 category selection ("All", "Weather", "Navigation") is single-select; "Active" functions as an independent toggle to filter out inactive spacecraft; "Country" filters by launching nation (India, Russia, International).
 - **FR-010**: System MUST render the satellite list showing active status indicator (solid amber square for active, hollow square for inactive/idle), satellite name, current altitude, and bookmark action for each entry.
 - **FR-011**: System MUST support selecting a satellite by clicking its point on the 3D globe or its list row in the control panel.
-- **FR-012**: System MUST frame the selected satellite with an amber square reticle and smoothly focus the camera to track it while allowing user orbital rotation and zoom.
+- **FR-012**: System MUST frame the selected satellite with an amber square reticle and smoothly focus the camera to center it on screen, adjusting camera distance dynamically according to satellite altitude so that the whole Earth remains visible (tight view for LEO, wide view for MEO/GEO), while keeping the satellite centered as it moves and allowing user orbital drag and zoom.
+- **FR-012b**: System MUST render a thin line from the selected satellite to Earth's surface directly beneath it, labeled with the satellite's live altitude and relative distance in Earth radii (e.g. "0.07 R⊕"), using mission-control styling without glow. Deselecting returns to the normal globe view.
 - **FR-013**: System MUST render the projected/traveled orbit trail of the selected satellite in amber along its computed trajectory.
-- **FR-014**: System MUST display a bottom-right telemetry HUD card for the selected satellite containing: Name, Live Status, Altitude, Speed, Orbit classification, Position (latitude/longitude), Launch year, International Designator, and Bookmark toggle.
+- **FR-014**: System MUST display a bottom-right telemetry HUD card for the selected satellite containing: Name, Live Status, Altitude, Distance in Earth radii (R⊕), Speed, Orbit classification, Position (latitude/longitude), Launch year, International Designator, and Bookmark toggle.
 - **FR-015**: System MUST persist bookmarked satellites in local browser storage and display them in a dedicated "Saved" section at the top of the control panel list.
 - **FR-016**: System MUST strictly adhere to the mission-control visual theme: charcoal background `#15171A`, panel background `#181B1D`, amber accent `#E8A33D`, off-white text `#E8E4D8`, muted text `#8E918B`, and hairline borders `#3A3E40`.
 - **FR-017**: System MUST use `IBM Plex Mono` for numerical and telemetry data and `Schibsted Grotesk` for labels, titles, and UI instructions.

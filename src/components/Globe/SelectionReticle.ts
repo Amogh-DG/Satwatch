@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 
 export function createSelectionReticle(): THREE.LineSegments {
-  // A square wireframe reticle (size 1.2 x 1.2 units) centered at (0, 0, 0)
-  const halfSize = 0.6;
+  // A square wireframe reticle (size 1.1 x 1.1 units) centered at (0, 0, 0)
+  // Perfectly frames the 0.38 x 0.38 square satellite marker
+  const halfSize = 0.55;
   const points: THREE.Vector3[] = [
     // Top border
     new THREE.Vector3(-halfSize, halfSize, 0),
@@ -35,4 +36,3 @@ export function createSelectionReticle(): THREE.LineSegments {
 
   return reticle;
 }
-

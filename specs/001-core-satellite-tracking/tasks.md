@@ -81,17 +81,17 @@ description: "Task list for Core Satellite Tracking & Globe Experience implement
 
 ---
 
-## Phase 5: User Story 3 - Satellite Selection, Telemetry HUD Card & Orbit Trail (Priority: P3)
+## Phase 5: User Story 3 - Satellite Selection, Telemetry HUD Card, Altitude Distance Line & Orbit Trail (Priority: P3)
 
-**Goal**: Selecting a satellite (on globe or in panel) smoothly focuses camera tracking, frames it with an amber square reticle, draws its historical amber orbit trail across the globe, and displays the bottom-right mission-control telemetry card.
+**Goal**: Selecting a satellite (on globe or in panel) smoothly centers camera on it with altitude-adaptive zoom (tight view for LEO, wide view for MEO/GEO so the whole Earth stays in frame), keeps it centered as it moves, draws an altitude line to Earth surface labeled with altitude and Earth radii (e.g. "0.07 R⊕"), draws its amber orbit trail, and displays the bottom-right telemetry card with Earth radii. Deselecting smoothly returns to normal globe view.
 
-**Independent Test**: Click `ISS` in the list or on the globe. Camera smoothly centers on ISS and tracks it; amber square reticle frames ISS; amber trajectory trail draws along its path; bottom-right card appears with Status (`Active`), Altitude, Speed, Orbit (`LEO`), Position, Launched (`1998`), and Designator (`1998-067A`). Clicking outside dismisses them.
+**Independent Test**: Click `ISS` (LEO) -> tight camera view, whole Earth visible, altitude line shows ~418 km (0.07 R⊕), HUD card shows 0.07 R⊕. Click `GLONASS-M` (MEO) -> camera pulls back to wide view, whole Earth visible. Drag and zoom work smoothly. Click empty space -> returns smoothly to normal globe view.
 
-- [ ] T023 [P] [US3] Implement 3D amber square framing reticle (`#E8A33D`) locked to the selected satellite position in `src/components/Globe/SelectionReticle.ts`
-- [ ] T024 [P] [US3] Implement dynamic amber orbit trail line (`#E8A33D`, hairline width, no glow) tracing SGP4 calculated trajectory points in `src/components/Globe/OrbitTrail.ts`
-- [ ] T025 [US3] Implement smooth camera transition and target-centric tracking controller (lerping camera center to satellite while allowing user drag/zoom) in `src/components/Globe/CameraController.ts`
-- [ ] T026 [P] [US3] Implement bottom-right instrument telemetry card (`#181B1D`, hairline border `#3A3E40`, square corners, dense table: Status, Altitude, Speed, Orbit, Position, Launched, Designator, and Saved toggle) in `src/components/HUD/TelemetryCard.tsx`
-- [ ] T027 [US3] Integrate reticle, orbit trail, camera tracking, and telemetry HUD card dismissal on background click in `src/components/Globe/GlobeCanvas.tsx` and `src/App.tsx`
+- [x] T023 [P] [US3] Implement 3D amber square framing reticle (`#E8A33D`) locked to the selected satellite position in `src/components/Globe/SelectionReticle.ts`
+- [x] T024 [P] [US3] Implement dynamic amber orbit trail line (`#E8A33D`, hairline width, no glow) tracing SGP4 calculated trajectory points in `src/components/Globe/OrbitTrail.ts`
+- [x] T025 [US3] Update `CameraController.ts` with altitude-adaptive distance scaling (LEO tight, MEO/GEO wide, whole Earth in frame), continuous satellite tracking, and smooth return to default view on deselection
+- [x] T026 [P] [US3] Update `TelemetryCard.tsx` with Earth radii distance metric (e.g. `0.07 R⊕`)
+- [x] T027 [US3] Implement thin altitude line from satellite to Earth surface and 3D/overlay label (altitude + Earth radii `R⊕`) in `src/components/Globe/AltitudeLine.ts` and integrate in `src/components/Globe/GlobeCanvas.tsx`
 
 **Checkpoint**: User Story 3 is fully operational; users can track and inspect spacecraft in detail.
 

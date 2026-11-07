@@ -4,6 +4,7 @@ import { fetchLiveSatellites } from './services/celestrak';
 import { GlobeCanvas } from './components/Globe/GlobeCanvas';
 import { MenuButton } from './components/Common/MenuButton';
 import { ControlPanel } from './components/Panel/ControlPanel';
+import { TelemetryCard } from './components/HUD/TelemetryCard';
 
 export const App: React.FC = () => {
   const {
@@ -48,6 +49,8 @@ export const App: React.FC = () => {
     };
   }, []);
 
+  const selectedSatellite = satellites.find((s) => s.id === selectedSatelliteId) || null;
+
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-charcoal select-none">
       {/* 3D Real-Time Globe Viewport */}
@@ -76,6 +79,17 @@ export const App: React.FC = () => {
         onToggleBookmark={toggleBookmark}
         onFilterChange={setFilters}
       />
+
+      {/* Telemetry HUD Card for Selected Satellite */}
+      {selectedSatellite && (
+        <TelemetryCard
+          satellite={selectedSatellite}
+          position={positions.get(selectedSatellite.id)}
+          isSaved={savedSatelliteIds.has(selectedSatellite.id)}
+          onToggleBookmark={toggleBookmark}
+          onClose={() => setSelectedSatelliteId(null)}
+        />
+      )}
 
       {/* Subtle Initial Loading Indicator */}
       {isLoading && (

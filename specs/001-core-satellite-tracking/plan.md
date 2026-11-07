@@ -85,6 +85,16 @@ Build a high-performance, desktop-first real-time 3D satellite tracker that matc
    - The orbit trail is a continuous Keplerian/SGP4 trajectory curve drawn behind the satellite. Raw Three.js `Line` or `Line2` directly accepts 3D world points computed from SGP4.
 4. **Bundle Efficiency & Independence**:
    - Raw Three.js introduces zero transitive D3/GIS baggage, maintaining a fast initial load and clean build.
+5. **Dynamic Camera Framing & Relative Altitude Distance**:
+   - **Adaptive Camera Distance**: Camera distance $z_{\text{cam}}$ scales dynamically with satellite orbital altitude so the Earth (radius $10.0$) remains completely visible in the viewport:
+     - LEO (ISS, $r \approx 10.66$): $z_{\text{cam}} \approx 25$ (tight view, Earth fills majority of frame).
+     - MEO (GLONASS-M, $r \approx 40$): $z_{\text{cam}} \approx 62$ (wide view, Earth comfortably centered).
+     - GEO (INSAT-3D, GSAT-30, $r \approx 66$): $z_{\text{cam}} \approx 96$ (ultra-wide view, Earth and geostationary orbit in full view).
+   - **Continuous Centering & Deselection Return**: Camera keeps satellite centered as it moves, while drag-to-orbit and scroll-to-zoom still work. Deselection smoothly transitions back to default `(0, 0, 28)`.
+   - **Altitude Distance Line & Earth Radii Metric**:
+     - Thin hairline line from satellite position to the sub-satellite surface point directly below it on Earth.
+     - Screen-space/billboarded mission-control badge along the line showing altitude and Earth radii distance ($R_\oplus = \text{altKm} / 6371.0$, e.g. "0.07 R⊕").
+     - Telemetry card displays the identical Earth radii figure.
 
 ---
 
