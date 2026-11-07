@@ -9,14 +9,18 @@ export function createWireframeEarth(): THREE.Group {
   const segments = 128;
 
   // Dark inner occlusion sphere to provide depth (back lines appear subtly dimmed)
-  const innerGeometry = new THREE.SphereGeometry(radius * 0.992, 48, 48);
+  const innerGeometry = new THREE.SphereGeometry(radius * 0.990, 64, 64);
   const innerMaterial = new THREE.MeshBasicMaterial({
     color: 0x15171A,
     transparent: true,
     opacity: 0.90,
-    depthWrite: true
+    depthWrite: true,
+    polygonOffset: true,
+    polygonOffsetFactor: 2,
+    polygonOffsetUnits: 2
   });
   const innerSphere = new THREE.Mesh(innerGeometry, innerMaterial);
+  innerSphere.renderOrder = 0;
   earthGroup.add(innerSphere);
 
   // Line materials

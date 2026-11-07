@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Satellite, PropagatedPosition } from '../../types/satellite';
 import { propagateSatellite } from '../../services/propagator';
 import { createWireframeEarth } from './WireframeEarth';
+import { createCountryBorders } from './CountryBorders';
 import { createStarfield } from './Starfield';
 import { SatelliteMarkersManager } from './SatelliteMarkers';
 
@@ -40,8 +41,8 @@ export const GlobeCanvas: React.FC<GlobeCanvasProps> = ({
     const camera = new THREE.PerspectiveCamera(
       45,
       window.innerWidth / window.innerHeight,
-      0.1,
-      1000
+      1.0,
+      300
     );
     camera.position.set(0, 3, 28);
 
@@ -61,6 +62,9 @@ export const GlobeCanvas: React.FC<GlobeCanvasProps> = ({
 
     const wireframeEarth = createWireframeEarth();
     globePivot.add(wireframeEarth);
+
+    const countryBorders = createCountryBorders();
+    globePivot.add(countryBorders);
 
     const markersManager = new SatelliteMarkersManager();
     globePivot.add(markersManager.group);
@@ -191,6 +195,7 @@ export const GlobeCanvas: React.FC<GlobeCanvasProps> = ({
       container.removeEventListener('wheel', onWheel);
       window.removeEventListener('resize', onResize);
       markersManager.dispose();
+      countryBorders.geometry.dispose();
       renderer.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);

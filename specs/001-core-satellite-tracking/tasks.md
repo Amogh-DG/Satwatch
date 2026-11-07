@@ -23,7 +23,7 @@ description: "Task list for Core Satellite Tracking & Globe Experience implement
 **Purpose**: Project initialization, build tools, dependencies, and design tokens.
 
 - [x] T001 Initialize Vite TypeScript React project with `package.json` in repository root
-- [x] T002 Install core dependencies: `three`, `@types/three`, `satellite.js`, `lucide-react`, `tailwindcss`, `postcss`, `autoprefixer` in `package.json`
+- [x] T002 Install core dependencies: `three`, `@types/three`, `satellite.js`, `lucide-react`, `world-atlas`, `topojson-client`, `@types/topojson-client`, `tailwindcss`, `postcss`, `autoprefixer` in `package.json`
 - [x] T003 [P] Configure Tailwind CSS and CSS variables for mission-control palette (`#15171A`, `#181B1D`, `#E8A33D`, `#E8E4D8`, `#8E918B`, `#3A3E40`), hairline borders, and 0px border-radius in `tailwind.config.js` and `src/index.css`
 - [x] T004 [P] Import Google Fonts `IBM Plex Mono` (data readouts) and `Schibsted Grotesk` (labels/UI) in `index.html` and configure font families in `tailwind.config.js`
 
@@ -48,18 +48,19 @@ description: "Task list for Core Satellite Tracking & Globe Experience implement
 
 ## Phase 3: User Story 1 - Real-Time 3D Globe & Satellite Observation (Priority: P1) 🎯 MVP
 
-**Goal**: Render a slowly rotating 3D Earth globe against `#15171A` background with the 10 target satellites moving along real-time SGP4 orbits, draggable from any angle, with the sole visible UI being a square top-left menu button.
+**Goal**: Render a slowly rotating 3D Earth globe against `#15171A` background with thin country border outlines and the 10 target satellites moving along real-time SGP4 orbits, draggable from any angle, with the sole visible UI being a square top-left menu button.
 
-**Independent Test**: Load `http://localhost:5173`; verify the wireframe Earth globe rotates smoothly with latitude/longitude graticules in `#3A3E40`, satellites move in real time as amber points (`#E8A33D`), clicking/dragging spins the globe, and only the square menu button is visible at top-left.
+**Independent Test**: Load `http://localhost:5173`; verify the wireframe Earth globe rotates smoothly with latitude/longitude graticules in `#3A3E40` and country borders in hairline `#4E5256` (no fills), satellites move in real time as amber points (`#E8A33D`), clicking/dragging spins the globe, and only the square menu button is visible at top-left.
 
 - [x] T011 [P] [US1] Create top-left square menu button (`#181B1D`, hairline border `#3A3E40`, square corners, hamburger icon) in `src/components/Common/MenuButton.tsx`
 - [x] T012 [P] [US1] Build procedural 3D wireframe Earth graticule geometry (latitude parallels, longitude meridians, equator ring in `#3A3E40` line material) matching `design/Default-globe.png` in `src/components/Globe/WireframeEarth.ts`
+- [x] T012b [P] [US1] Create procedural country border outlines using bundled world-atlas Natural Earth data in hairline style in `src/components/Globe/CountryBorders.ts`
 - [x] T013 [P] [US1] Implement 3D celestial starfield background points in `src/components/Globe/Starfield.ts`
 - [x] T014 [US1] Implement 3D satellite markers rendering real-time positions of the 10 satellites as crisp amber squares (`#E8A33D`) with raycasting click detection in `src/components/Globe/SatelliteMarkers.ts`
 - [x] T015 [US1] Assemble Three.js scene, WebGL renderer, animation loop (slow ambient rotation), camera controls (drag-to-orbit), and resize handling in `src/components/Globe/GlobeCanvas.tsx`
 - [x] T016 [US1] Connect `GlobeCanvas`, live CelesTrak ingestion, real-time SGP4 propagation loop, and `MenuButton` in `src/App.tsx`
 
-**Checkpoint**: User Story 1 (MVP) is fully functional and delivers an ambient 3D real-time globe.
+**Checkpoint**: User Story 1 (MVP) is fully functional and delivers an ambient 3D real-time globe with country border outlines.
 
 ---
 
@@ -117,25 +118,3 @@ description: "Task list for Core Satellite Tracking & Globe Experience implement
 - [ ] T031 [P] Verify visual styling against `design/Default-globe.png`, `design/Panel-open.png`, and `design/Satellite-selected.png` (hairline borders `#3A3E40`, 0px border-radius, exact hex colors, typography) in `src/index.css`
 - [ ] T032 Verify live data integrity: ensure zero hardcoded positions/statuses and confirm unavailable fields render strictly as `—`
 - [ ] T033 Execute quickstart end-to-end verification scenarios A through E from `specs/001-core-satellite-tracking/quickstart.md`
-
----
-
-## Dependencies & Execution Order
-
-### Phase Dependencies
-- **Phase 1 (Setup)**: Complete.
-- **Phase 2 (Foundational)**: Complete.
-- **Phase 3 (User Story 1 - MVP)**: Complete.
-- **Phase 4 (User Story 2)**: Ready to implement.
-- **Phase 5 (User Story 3)**: Ready to implement.
-- **Phase 6 (User Story 4)**: Ready to implement.
-- **Phase 7 (Polish)**: Ready after user stories.
-
-### Implementation Strategy: MVP First
-
-1. **Step 1**: Complete Phase 1 (Setup) and Phase 2 (Foundational) — ✓ COMPLETED
-2. **Step 2**: Implement Phase 3 (User Story 1) $\rightarrow$ **Deliver MVP** — ✓ COMPLETED
-3. **Step 3**: Implement Phase 4 (User Story 2) $\rightarrow$ Search, compound filters, and drawer
-4. **Step 4**: Implement Phase 5 (User Story 3) $\rightarrow$ Click-to-focus camera tracking, reticle, orbit trail, and HUD card
-5. **Step 5**: Implement Phase 6 (User Story 4) $\rightarrow$ Bookmarks and persistent "Saved" section
-6. **Step 6**: Validate against `quickstart.md` scenarios and visual design screenshots.

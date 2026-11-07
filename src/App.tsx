@@ -3,14 +3,20 @@ import { useTrackerStore, trackerStore } from './store/useTrackerStore';
 import { fetchLiveSatellites } from './services/celestrak';
 import { GlobeCanvas } from './components/Globe/GlobeCanvas';
 import { MenuButton } from './components/Common/MenuButton';
+import { ControlPanel } from './components/Panel/ControlPanel';
 
 export const App: React.FC = () => {
   const {
     satellites,
+    positions,
     selectedSatelliteId,
     isPanelOpen,
+    savedSatelliteIds,
+    filters,
     setSelectedSatelliteId,
-    togglePanel
+    togglePanel,
+    toggleBookmark,
+    setFilters
   } = useTrackerStore();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -49,13 +55,26 @@ export const App: React.FC = () => {
         satellites={satellites}
         selectedSatelliteId={selectedSatelliteId}
         onSelectSatellite={setSelectedSatelliteId}
-        onPositionsUpdate={(positions) => trackerStore.setPositions(positions)}
+        onPositionsUpdate={(posMap) => trackerStore.setPositions(posMap)}
       />
 
-      {/* Sole visible UI in Default Globe View: Top-Left Square Menu Button */}
+      {/* Top-Left Square Menu Button */}
       <MenuButton
         isOpen={isPanelOpen}
         onClick={togglePanel}
+      />
+
+      {/* Slide-In Mission Control Panel */}
+      <ControlPanel
+        isOpen={isPanelOpen}
+        satellites={satellites}
+        positions={positions}
+        selectedSatelliteId={selectedSatelliteId}
+        savedSatelliteIds={savedSatelliteIds}
+        filters={filters}
+        onSelectSatellite={setSelectedSatelliteId}
+        onToggleBookmark={toggleBookmark}
+        onFilterChange={setFilters}
       />
 
       {/* Subtle Initial Loading Indicator */}
@@ -70,4 +89,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-

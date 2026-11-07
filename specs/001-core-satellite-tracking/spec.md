@@ -16,20 +16,21 @@
 - Q: When a satellite is selected and the camera focuses on it, should the camera lock and continuously track the moving satellite, or center once and allow free manual rotation? → A: Option A: Target-Centric Tracking (camera smoothly centers on the satellite and follows its real-time path, while permitting user drag to orbit around it and scroll to zoom).
 - Q: How is the active vs. idle/inactive operational status of satellites determined? → A: Operational status MUST be derived dynamically from live tracking metadata (e.g., live SATCAT/ephemeris operational status code) and MUST NOT be hardcoded. Missing status renders strictly as "—".
 - Q: Replacement of decayed satellite Kosmos 2542 and naming alignment? → A: Kosmos 2542 is replaced with currently active Russian Earth observation satellite Resurs-P 4 (NORAD 59371, COSPAR 2024-060A, active TLE). Cartosat-2 is renamed to Cartosat-2A everywhere to match active orbital tracking (NORAD 32783).
+- Q: Country border outlines on the 3D globe? → A: Thin country border outlines only (no land fills) rendered on the wireframe Earth in hairline line style (#4E5256 / slightly lighter than graticule #3A3E40) using locally bundled Natural Earth data (world-atlas 110m via topojson-client).
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Real-Time 3D Globe & Satellite Observation (Priority: P1)
 
-As an aerospace observer or mission monitor, I want to observe a clean 3D Earth with real satellites moving accurately along their current real-time orbital paths, so that I have an immediate, unencumbered visual overview of active orbital space.
+As an aerospace observer or mission monitor, I want to observe a clean 3D Earth with country border outlines and real satellites moving accurately along their current real-time orbital paths, so that I have an immediate, unencumbered visual overview of active orbital space and geographic orientation.
 
-**Why this priority**: The 3D globe visualization with continuous real-time satellite positions is the core identity and primary interface of the application. Everything else builds around this view.
+**Why this priority**: The 3D globe visualization with continuous real-time satellite positions and recognizable planetary geographic outlines is the core identity and primary interface of the application. Everything else builds around this view.
 
-**Independent Test**: Load the application; confirm that a 3D Earth globe slowly rotates against a charcoal background with zero intrusive UI chrome except a single square menu button at top-left. Confirm the 10 target satellites (ISS, INSAT-3D, Cartosat-2A, GSAT-30, RISAT-2B, RESOURCESAT-2, GLONASS-M, Meridian, Elektro-L, Resurs-P 4) appear as discrete points moving across real orbital trajectories calculated continuously from live data feeds. Users can click and drag anywhere on the globe to spin and inspect it from any angle.
+**Independent Test**: Load the application; confirm that a 3D Earth globe slowly rotates against a charcoal background with latitude/longitude graticules and thin hairline country border outlines (no land fills), with zero intrusive UI chrome except a single square menu button at top-left. Confirm the 10 target satellites (ISS, INSAT-3D, Cartosat-2A, GSAT-30, RISAT-2B, RESOURCESAT-2, GLONASS-M, Meridian, Elektro-L, Resurs-P 4) appear as discrete points moving across real orbital trajectories calculated continuously from live data feeds. Users can click and drag anywhere on the globe to spin and inspect it from any angle.
 
 **Acceptance Scenarios**:
 
-1. **Given** the application opens in a desktop browser, **When** initial data loading completes, **Then** the primary viewport displays a slowly rotating 3D Earth surrounded by the 10 target satellites moving in real-time positions, with only a small square menu button visible at top-left.
+1. **Given** the application opens in a desktop browser, **When** initial data loading completes, **Then** the primary viewport displays a slowly rotating 3D Earth rendered with wireframe graticules and thin country border outlines (no fills), surrounded by the 10 target satellites moving in real-time positions, with only a small square menu button visible at top-left.
 2. **Given** satellites rendered on the globe, **When** observing movement over time, **Then** positions update continuously based on real tracking computations without canned looping or static hardcoded coordinates.
 3. **Given** the 3D globe viewport, **When** the user clicks and drags anywhere on the globe, **Then** the globe smoothly rotates to allow inspection from any angle.
 4. **Given** telemetry or positional feeds for a satellite have missing fields, **When** displayed, **Then** missing properties show strictly as "—" and never fabricated values.
@@ -101,6 +102,7 @@ As a frequent observer, I want to bookmark specific satellites so that I can qui
 ### Functional Requirements
 
 - **FR-001**: System MUST render a 3D Earth globe as the primary viewport, rotating slowly by default and draggable from any angle.
+- **FR-001b**: System MUST render thin country border outlines on the 3D Earth globe with zero land fills, styled in a subtle hairline line material (`#4E5256` / `#3A3E40`), using locally bundled Natural Earth dataset (`world-atlas` 110m via `topojson-client`) without external CDN calls.
 - **FR-002**: System MUST retrieve live satellite tracking data (TLEs or orbital state vectors) from a live data source and continuously calculate satellite positions in real time for exactly the 10 target satellites defined in `docs/features.md`: ISS, INSAT-3D, Cartosat-2A, GSAT-30, RISAT-2B, RESOURCESAT-2, GLONASS-M, Meridian, Elektro-L, and Resurs-P 4.
 - **FR-003**: System MUST NOT use canned looped animations, static coordinates, or hardcoded mock trajectories for satellite tracking.
 - **FR-004**: System MUST derive satellite active/idle operational status dynamically from live tracking data feeds (SATCAT records) and MUST NOT hardcode operational status in application source code.
@@ -132,7 +134,7 @@ As a frequent observer, I want to bookmark specific satellites so that I can qui
 
 ### Measurable Outcomes
 
-- **SC-001**: Globe and real-time satellite rendering maintains 60 FPS on standard desktop hardware while continuously calculating real-time orbits for the 10 reference spacecraft.
+- **SC-001**: Globe and real-time satellite rendering maintains 60 FPS on standard desktop hardware while continuously calculating real-time orbits for the 10 reference spacecraft and rendering 3D country border outlines.
 - **SC-002**: Opening or closing the slide-in control panel completes in under 200 milliseconds with zero visible lag or stutter.
 - **SC-003**: Search queries and category filter clicks filter the satellite catalog in under 16 milliseconds.
 - **SC-004**: Selecting a satellite initiates camera reticle framing, trajectory rendering, and telemetry card presentation within 100 milliseconds.

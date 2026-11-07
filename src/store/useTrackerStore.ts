@@ -125,9 +125,22 @@ export function useTrackerStore(): TrackerState & {
   const [state, setState] = useState(() => trackerStore.getState());
 
   useEffect(() => {
-    return trackerStore.subscribe(() => {
+    const unsub = trackerStore.subscribe(() => {
       setState(trackerStore.getState());
     });
+
+    // Sync positions at 1 Hz for smooth telemetry readouts without thrashing DOM
+    const interval = setInterval(() => {
+      setState(prev => ({
+        ...prev,
+        positions: trackerStore.getState().positions
+      }));
+    }, 1000);
+
+    return () => {
+      unsub();
+      clearInterval(interval);
+    };
   }, []);
 
   return {

@@ -13,12 +13,15 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "satellite.js": "^5.0.0",
-    "three": "^0.170.0"
+    "three": "^0.170.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/three": "^0.170.0",
+    "@types/topojson-client": "^3.1.5",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
